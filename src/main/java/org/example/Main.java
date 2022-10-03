@@ -13,14 +13,13 @@ import java.time.Duration;
 public class Main {
     public static void main(String[] args) {
         WebDriver driver;
-        WebDriverWait wait;
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
 
         LandingPage landingPage=new LandingPage(driver);
 
@@ -35,6 +34,6 @@ public class Main {
 
         ProductCatalogue productCatalogue=new ProductCatalogue(driver);
         productCatalogue.getProductList();
-        productCatalogue.addToChart(productNameList);
+        productCatalogue.addProductsToChart(productNameList);
     }
 }
