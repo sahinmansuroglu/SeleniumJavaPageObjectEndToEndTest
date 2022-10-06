@@ -4,7 +4,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pageObjects.*;
 
@@ -38,7 +37,7 @@ public class Main {
         cartPage.verifyProductsDisplay(productNameList1);
         CheckOutPage checkOutPage= cartPage.goToCheckOutPage();
         checkOutPage.enterCountry("tur","Turkey");
-        OrderComplePage orderComplePage=checkOutPage.submitCheckut();
+        ConfirmationPage orderComplePage=checkOutPage.submitCheckut();
         String succesMessage=orderComplePage.getSuccesText();
         Assert.assertTrue(succesMessage.equalsIgnoreCase("THANKYOU FOR THE ORDER."));
         driver.quit();

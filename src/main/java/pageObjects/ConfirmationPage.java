@@ -5,8 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class OrderComplePage extends AbstractComponent {
-    public OrderComplePage(WebDriver driver) {
+public class ConfirmationPage extends AbstractComponent {
+    public ConfirmationPage(WebDriver driver) {
         super(driver);
     }
 

@@ -40,9 +40,9 @@ public class CheckOutPage extends AbstractComponent {
             System.out.println("Turkey Element is not found");
         }
     }
-   public OrderComplePage submitCheckut(){
+   public ConfirmationPage submitCheckut(){
        submitButton.click();
-       return new OrderComplePage(driver);
+       return new ConfirmationPage(driver);
    }
 
 }

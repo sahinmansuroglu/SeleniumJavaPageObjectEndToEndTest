@@ -26,7 +26,7 @@ public class AbstractComponent {
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(second));
         wait.until(ExpectedConditions.visibilityOfElementLocated(byName));
     }
-
+    //Todo create Action method  for İframe and Javascript
     protected void waitForWebElementToAppear(WebElement webElement,int second){
         WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(second));
         wait.until(ExpectedConditions.visibilityOf(webElement));
