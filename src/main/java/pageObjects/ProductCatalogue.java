@@ -14,8 +14,7 @@ public class ProductCatalogue extends AbstractComponent {
 
      public ProductCatalogue(WebDriver driver){
             super(driver);
-            PageFactory.initElements(driver,this);
-     }
+    }
 
     @FindBy(css = ".mb-3")
     List<WebElement> productsList;

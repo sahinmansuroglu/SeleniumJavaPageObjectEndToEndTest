@@ -5,13 +5,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageObjects.LandingPage;
-import pageObjects.ProductCatalogue;
+import org.testng.Assert;
+import pageObjects.*;
 
 import java.time.Duration;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         WebDriver driver;
         WebDriverManager.chromedriver().setup();
 
@@ -21,19 +21,26 @@ public class Main {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
 
-        LandingPage landingPage=new LandingPage(driver);
+
 
         String url="https://rahulshettyacademy.com/client";
         String email="test12@test.com";
         String password="Test1234";
         String[] productNameList = {"ZARA COAT 3", "ADIDAS ORIGINAL", "IPHONE 13 PRO"};
-
-
+        String[] productNameList1 = {"ZARA COAT 3", "ADIDAS ORIGINAL", "IPHONE 13 PRO"};
+        LandingPage landingPage=new LandingPage(driver);
         landingPage.goTo(url);
-        landingPage.login(email,password);
+        ProductCatalogue productCatalogue=landingPage.login(email,password);
 
-        ProductCatalogue productCatalogue=new ProductCatalogue(driver);
         productCatalogue.getProductList();
         productCatalogue.addProductsToChart(productNameList);
+        CartPage cartPage=productCatalogue.goToCartPage();
+        cartPage.verifyProductsDisplay(productNameList1);
+        CheckOutPage checkOutPage= cartPage.goToCheckOutPage();
+        checkOutPage.enterCountry("tur","Turkey");
+        OrderComplePage orderComplePage=checkOutPage.submitCheckut();
+        String succesMessage=orderComplePage.getSuccesText();
+        Assert.assertTrue(succesMessage.equalsIgnoreCase("THANKYOU FOR THE ORDER."));
+        driver.quit();
     }
 }

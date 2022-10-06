@@ -1,15 +1,15 @@
 package pageObjects;
 
+import AbstractComponents.AbstractComponent;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class LandingPage {
-    WebDriver driver;
+public class LandingPage extends AbstractComponent {
+
     public  LandingPage(WebDriver driver){
-        this.driver=driver;
-        PageFactory.initElements(driver,this);
+        super(driver);
+
 
     }
 
@@ -20,10 +20,11 @@ public class LandingPage {
     @FindBy(css = "input#login")
     WebElement submitButtonElement;
 
-    public  void  login(String userEmail, String password){
+    public ProductCatalogue login(String userEmail, String password){
         this.userEmailElement.sendKeys(userEmail);
         this.userPasswordElement.sendKeys(password);
         submitButtonElement.click();
+        return new ProductCatalogue(driver);
     }
     public  void goTo(String url){
         driver.get(url);
